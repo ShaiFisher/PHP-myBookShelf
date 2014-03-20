@@ -4,26 +4,80 @@
 
 <html>
     <head>
-        <title>@reader.getName's Profile</title>
+        <title>@reader.name's Profile</title>
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
         <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+
+            <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+            <!-- Optional theme -->
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+            <!-- Latest compiled and minified JavaScript -->
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
     </head>
     <body>
-        <Table>
-            <TR>
-                <TD><img src="@reader.getPicUrl"></TD>
-                <td><H1>@reader.getName</H1></td>
-            </TR>
-        </Table>
-        <Table>
-            <TR>
-                @reader.getBooks.map { book =>
-                    <TD align="center"><img src="@book.getPicUrl" width="200" height="300"><BR>
-                        @book.getName
-                    </TD>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3"><img src="@reader.picUrl" class="img-rounded"></div>
+                <div class="col-md-3"><H1>@reader.name</H1></div>
+            </div>
+        </div>
+<BR><BR>
+
+        <div class="container">
+            <div class="row">
+                @reader.books.map { book =>
+                    <div class="col-md-2" style="text-align:center"><a href="book"><img src="@book.picUrl" width="200" height="300" class="img-thumbnail"><BR>
+                        <H5>@book.name</H5></a>
+                    </div>
                 }
-            </TR>
-        </Table>
+            </div>
+            <!--
+            <div class="row">
+                <div ng-controller="CarouselDemoCtrl">
+                    <div style="height: 305px">
+                        <carousel interval="myInterval">
+                            <slide ng-repeat="slide in slides" active="slide.active">
+                                <img ng-src="{{slide.image}}" style="margin:auto;">
+                                <div class="carousel-caption">
+                                    <h4>Slide {{$index}}</h4>
+                                    <p>{{slide.text}}</p>
+                                </div>
+                            </slide>
+                        </carousel>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a class="btn btn-info" ng-click="addSlide()">Add Slide</a>
+                        </div>
+                        <div class="col-md-6">
+      Interval, in milliseconds: <input type="number" class="form-control" ng-model="myInterval">
+                            <br />Enter a negative number to stop the interval.
+    </div>
+                    </div>
+                </div>
+            </div>
+            -->
+        </div>
     </body>
+    <Script>
+        /*
+        function CarouselDemoCtrl($scope) {
+            $scope.myInterval = 5000;
+            var slides = $scope.slides = [];
+            $scope.addSlide = function(imgUrl) {
+                var newWidth = 700 + slides.length;
+                slides.push({
+                    image: imgUrl,
+                    text: ['More','Extra','Lots of','Surplus'][slides.length % 4] + ' ' +
+                        ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
+                });
+            };
+            @for(book <- reader.books) {
+                $scope.addSlide('@book.picUrl');
+            }
+        }*/
+    </Script>
 </html>
